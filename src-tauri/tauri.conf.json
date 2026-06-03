@@ -12,10 +12,10 @@
     "windows": [
       {
         "title": "Network Monitor",
-        "width": 720,
-        "height": 440,
-        "minWidth": 500,
-        "minHeight": 380,
+        "width": 760,
+        "height": 340,
+        "minWidth": 760,
+        "minHeight": 340,
         "resizable": true,
         "decorations": true,
         "center": true,
