@@ -1,0 +1,61 @@
+/* ========== CSS Reset & 主题变量 ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #f5f6f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f2f5;
+  --border: #e1e4e8;
+  --text-primary: #1a1a2e;
+  --text-secondary: #5a6073;
+  --text-muted: #9ca3af;
+  --blue-accent: #4a8eff;
+  --blue-glow: rgba(74, 142, 255, 0.12);
+  --download: #2979ff;
+  --upload: #ed8936;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --font-mono: "Cascadia Code", "Fira Code", "JetBrains Mono", "Consolas", monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #111640;
+  --bg-card: #151b45;
+  --bg-card-hover: #1a2152;
+  --border: #1e2560;
+  --text-primary: #e4eaf5;
+  --text-secondary: #8894b8;
+  --text-muted: #5a6688;
+  --download: #4a9eff;
+  --upload: #f0a050;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s;
+  overflow: hidden;
+  user-select: none;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
