@@ -1,20 +1,18 @@
-node_modules/
+﻿node_modules/
 dist/
 target/
 *.log
 .DS_Store
 
-# Preview HTML 文件（仅用于 UI 设计参考）
+# Preview HTML 鏂囦欢锛堜粎鐢ㄤ簬 UI 璁捐鍙傝€冿級
 ui-preview*.html
 
-# Tauri 运行时
-src-tauri/target/
+# Tauri 杩愯鏃?src-tauri/target/
 
-# 统计数据文件
+# 缁熻鏁版嵁鏂囦欢
 network_monitor_stats.json
 
-# CLAUDE 本地配置
+# CLAUDE 鏈湴閰嶇疆
 .claude/
 CLAUDE.md
 
-installer/
