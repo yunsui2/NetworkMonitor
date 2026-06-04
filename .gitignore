@@ -16,3 +16,5 @@ network_monitor_stats.json
 # CLAUDE 本地配置
 .claude/
 CLAUDE.md
+
+installer/
