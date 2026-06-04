@@ -126,26 +126,30 @@
   padding: 3px 0 0; flex-shrink: 0; letter-spacing: 0.5px;
 }
 
-/* ====== 月度页 ====== */
+/* ====== 历史页 ====== */
 .month-list {
   display: flex; flex-direction: column; gap: 5px;
-  padding: 0 8px; flex: 1; width: 100%; justify-content: center;
+  padding: 0 6px; flex: 1; width: 100%; justify-content: center;
 }
 .month-item {
   background: var(--bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 8px 12px;
+  border-radius: 6px; padding: 7px 10px;
   box-shadow: var(--shadow); transition: 0.3s;
 }
-.month-row1 {
-  display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+.month-item-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 4px;
 }
-.month-label { font-size: 10px; font-weight: 600; white-space: nowrap; }
-.month-dlul { display: flex; gap: 8px; font-size: 9px; color: var(--text2); flex: 1; }
-.month-dlul .dl { color: var(--dl); font-family: var(--mono); font-size: 9px; }
-.month-dlul .ul { color: var(--ul); font-family: var(--mono); font-size: 9px; }
-.month-total { font-family: var(--mono); font-size: 12px; font-weight: 700; white-space: nowrap; }
-.month-bar-bg { background: var(--bg2); border-radius: 2px; height: 4px; overflow: hidden; }
+.month-item-header span:first-child { font-size: 10px; font-weight: 600; }
+.month-item-header span:last-child {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+}
+.month-bar-bg { background: var(--bg2); border-radius: 2px; height: 4px; overflow: hidden; margin-bottom: 3px; }
 .month-bar-fill { background: var(--accent); height: 100%; border-radius: 2px; transition: width 0.6s; }
+.month-item-sub {
+  display: flex; gap: 10px;
+  font-size: 8px; color: var(--text3); letter-spacing: 0.3px;
+}
 
 /* ====== 设置面板 ====== */
 .settings-overlay {

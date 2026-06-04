@@ -37,7 +37,7 @@ export default function App() {
               className={"tab-btn" + (activeTab === "monthly" ? " active" : "")}
               onClick={() => setActiveTab("monthly")}
             >
-              月度
+              历史
             </button>
           </div>
         </div>
