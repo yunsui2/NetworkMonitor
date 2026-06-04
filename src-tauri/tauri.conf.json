@@ -1,5 +1,5 @@
 {
-  "productName": "Network Monitor",
+  "productName": "Flux",
   "version": "1.0.0",
   "identifier": "com.network-monitor.app",
   "build": {
@@ -11,7 +11,7 @@
   "app": {
     "windows": [
       {
-        "title": "Network Monitor",
+        "title": "Flux",
         "width": 283,
         "height": 188,
         "minWidth": 200,

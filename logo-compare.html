@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图标方案对比 — Flux / Gauge / Orbit</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f6fa;
+  --card: #fff;
+  --text: #1a1a2e;
+  --text2: #5a6073;
+  --border: #e5e7eb;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  font-family: var(--font); background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  padding: 30px 20px; -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.subtitle { font-size: 14px; color: var(--text2); margin-bottom: 30px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1080px; width: 100%; margin-bottom: 30px; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: 0.2s;
+}
+.card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+/* Title row */
+.card-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; }
+.card-num { font-size: 48px; font-weight: 800; color: #e5e7eb; line-height: 1; }
+.card-name { font-size: 28px; font-weight: 700; }
+.card-tag { font-size: 12px; color: var(--text2); font-weight: 400; }
+
+.card-desc { font-size: 12px; color: var(--text2); text-align: center; line-height: 1.6; margin-bottom: 24px; min-height: 40px; }
+
+/* Size demos */
+.sizes { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 20px; }
+.size-row { display: flex; align-items: center; gap: 14px; }
+.size-label { font-size: 10px; color: #999; width: 30px; text-align: right; }
+.size-canvas { border: 1px dashed #e5e7eb; border-radius: 4px; background: #fafbfc; display: flex; align-items: center; justify-content: center; }
+
+/* Color row */
+.colors { display: flex; gap: 8px; margin-top: 4px; }
+.color-dot { width: 14px; height: 14px; border-radius: 3px; }
+
+/* === FLUX SVG === */
+.flux-green  { stop-color: #06d6a0; }
+.flux-blue   { stop-color: #2979ff; }
+
+/* === GAUGE SVG === */
+.gauge-light { stop-color: #a78bfa; }
+.gauge-dark  { stop-color: #7c3aed; }
+
+/* === ORBIT SVG === */
+.orbit-gray  { stop-color: #d1d5db; }
+.orbit-bright { stop-color: #f59e0b; }
+
+/* ====== Windows 11 任务栏模拟 ====== */
+.taskbar-sim {
+  background: #1e2233; border-radius: 12px 12px 0 0;
+  padding: 8px 20px; display: flex; align-items: center; gap: 12px;
+  margin-top: 24px; max-width: 1080px; width: 100%;
+}
+.taskbar-label { color: #888; font-size: 11px; margin-right: 4px; }
+.taskbar-icons { display: flex; gap: 16px; }
+.taskbar-slot {
+  background: rgba(255,255,255,0.05); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* App name row with icon + name */
+.app-row { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+.app-row .app-icon { flex-shrink: 0; }
+.app-row .app-label { font-size: 13px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>图标方案对比</h1>
+<p class="subtitle">三种设计方案 · 多尺寸效果 · Windows 11 风格预览</p>
+
+<div class="grid">
+
+  <!-- ========== 方案一: FLUX ========== -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">一</span>
+      <div>
+        <div class="card-name">Flux</div>
+        <div class="card-tag">极简数据流</div>
+      </div>
+    </div>
+    <div class="card-desc">三条虚线 + 上升箭头<br>数据流动感 · 锐利简洁</div>
+
+    <div class="sizes">
+      <!-- 256px -->
+      <div class="size-row">
+        <span class="size-label">256</span>
+        <div class="size-canvas" style="width:120px;height:120px">
+          <svg width="90" height="90" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="fluxGrad1" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" class="flux-green"/>
+                <stop offset="100%" class="flux-blue"/>
+              </linearGradient>
+            </defs>
+            <!-- 三条虚线 -->
+            <line x1="20" y1="75" x2="65" y2="75" stroke="url(#fluxGrad1)" stroke-width="2.5" stroke-dasharray="2 6" opacity="0.5"/>
+            <line x1="20" y1="58" x2="70" y2="58" stroke="url(#fluxGrad1)" stroke-width="3.5" stroke-dasharray="4 5" opacity="0.75"/>
+            <line x1="20" y1="41" x2="72" y2="41" stroke="url(#fluxGrad1)" stroke-width="4.5" stroke-dasharray="8 4"/>
+            <!-- 箭头 -->
+            <polygon points="72,41 58,33 58,49" fill="#2979ff"/>
+            <!-- 橙点 -->
+            <circle cx="78" cy="36" r="4" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 48px -->
+      <div class="size-row">
+        <span class="size-label">48</span>
+        <div class="size-canvas" style="width:48px;height:48px">
+          <svg width="36" height="36" viewBox="0 0 100 100">
+            <line x1="20" y1="75" x2="65" y2="75" stroke="#06d6a0" stroke-width="3" stroke-dasharray="2 6" opacity="0.5"/>
+            <line x1="20" y1="55" x2="70" y2="55" stroke="#2979ff" stroke-width="4" stroke-dasharray="5 5" opacity="0.8"/>
+            <line x1="20" y1="38" x2="72" y2="38" stroke="#2979ff" stroke-width="5" stroke-dasharray="8 4"/>
+            <polygon points="72,38 56,29 56,47" fill="#2979ff"/>
+            <circle cx="79" cy="33" r="5" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 16px (taskbar) -->
+      <div class="size-row">
+        <span class="size-label">16</span>
+        <div class="size-canvas" style="width:24px;height:24px">
+          <svg width="16" height="16" viewBox="0 0 100 100">
+            <line x1="15" y1="78" x2="60" y2="78" stroke="#06d6a0" stroke-width="4" stroke-dasharray="3 8" opacity="0.5"/>
+            <line x1="15" y1="55" x2="68" y2="55" stroke="#2979ff" stroke-width="5" stroke-dasharray="6 6"/>
+            <line x1="15" y1="35" x2="70" y2="35" stroke="#2979ff" stroke-width="6" stroke-dasharray="10 5"/>
+            <polygon points="70,35 54,25 54,45" fill="#2979ff"/>
+            <circle cx="78" cy="28" r="6" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="colors">
+      <span style="font-size:10px;color:#999">色:</span>
+      <span class="color-dot" style="background:#2979ff"></span>
+      <span class="color-dot" style="background:#06d6a0"></span>
+      <span class="color-dot" style="background:#f59e0b"></span>
+    </div>
+
+    <div class="app-row">
+      <svg width="20" height="20" viewBox="0 0 100 100"><defs><linearGradient id="f1" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#06d6a0"/><stop offset="100%" stop-color="#2979ff"/></linearGradient></defs><line x1="18" y1="78" x2="65" y2="78" stroke="url(#f1)" stroke-width="3" stroke-dasharray="2 6" opacity="0.5"/><line x1="18" y1="55" x2="70" y2="55" stroke="url(#f1)" stroke-width="4" stroke-dasharray="5 5" opacity="0.8"/><line x1="18" y1="35" x2="72" y2="35" stroke="url(#f1)" stroke-width="5" stroke-dasharray="8 4"/><polygon points="72,35 56,25 56,45" fill="#2979ff"/><circle cx="79" cy="28" r="5" fill="#f59e0b"/></svg>
+      <span class="app-label">Flux</span>
+    </div>
+  </div>
+
+  <!-- ========== 方案二: GAUGE ========== -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">二</span>
+      <div>
+        <div class="card-name">Gauge</div>
+        <div class="card-tag">容器与水位</div>
+      </div>
+    </div>
+    <div class="card-desc">倾斜圆角容器 + 波浪水面<br>量杯刻度 · 动态倾斜感</div>
+
+    <div class="sizes">
+      <!-- 256px -->
+      <div class="size-row">
+        <span class="size-label">256</span>
+        <div class="size-canvas" style="width:120px;height:120px">
+          <svg width="90" height="90" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="gaugeGrad1" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" class="gauge-light"/>
+                <stop offset="100%" class="gauge-dark"/>
+              </linearGradient>
+              <clipPath id="gaugeClip1">
+                <rect x="22" y="22" width="56" height="56" rx="10" transform="rotate(15 50 50)"/>
+              </clipPath>
+            </defs>
+            <!-- 容器轮廓 -->
+            <rect x="22" y="22" width="56" height="56" rx="10" fill="none" stroke="#6b7280" stroke-width="1.8" transform="rotate(15 50 50)"/>
+            <!-- 液体 -->
+            <rect x="21" y="44" width="58" height="35" rx="8" fill="url(#gaugeGrad1)" opacity="0.7" transform="rotate(15 50 50)" clip-path="url(#gaugeClip1)"/>
+            <!-- 波浪线 -->
+            <path d="M20,48 Q30,42 40,48 Q50,54 60,48 Q70,42 82,48" fill="none" stroke="url(#gaugeGrad1)" stroke-width="2" opacity="0.9" transform="rotate(15 50 50)"/>
+            <!-- 刻度线 -->
+            <line x1="24" y1="35" x2="30" y2="35" stroke="#06d6a0" stroke-width="1" transform="rotate(15 50 50)"/>
+            <line x1="24" y1="65" x2="30" y2="65" stroke="#06d6a0" stroke-width="0.8" opacity="0.4" transform="rotate(15 50 50)"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 48px -->
+      <div class="size-row">
+        <span class="size-label">48</span>
+        <div class="size-canvas" style="width:48px;height:48px">
+          <svg width="36" height="36" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="gaugeGrad2" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+              <clipPath id="gaugeClip2">
+                <rect x="20" y="20" width="60" height="60" rx="10" transform="rotate(15 50 50)"/>
+              </clipPath>
+            </defs>
+            <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="#6b7280" stroke-width="2.5" transform="rotate(15 50 50)"/>
+            <rect x="19" y="45" width="62" height="36" rx="8" fill="url(#gaugeGrad2)" opacity="0.7" transform="rotate(15 50 50)" clip-path="url(#gaugeClip2)"/>
+            <path d="M18,50 Q30,44 40,50 Q50,56 60,50 Q70,44 84,50" fill="none" stroke="#7c3aed" stroke-width="2.5" transform="rotate(15 50 50)"/>
+            <line x1="22" y1="38" x2="28" y2="38" stroke="#06d6a0" stroke-width="1.5" transform="rotate(15 50 50)"/>
+            <line x1="22" y1="68" x2="28" y2="68" stroke="#06d6a0" stroke-width="1" opacity="0.4" transform="rotate(15 50 50)"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 16px -->
+      <div class="size-row">
+        <span class="size-label">16</span>
+        <div class="size-canvas" style="width:24px;height:24px">
+          <svg width="16" height="16" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="gaugeGrad3" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+              <clipPath id="gaugeClip3">
+                <rect x="18" y="18" width="64" height="64" rx="10" transform="rotate(15 50 50)"/>
+              </clipPath>
+            </defs>
+            <rect x="18" y="18" width="64" height="64" rx="10" fill="none" stroke="#6b7280" stroke-width="3" transform="rotate(15 50 50)"/>
+            <rect x="17" y="48" width="66" height="35" rx="8" fill="url(#gaugeGrad3)" opacity="0.7" transform="rotate(15 50 50)" clip-path="url(#gaugeClip3)"/>
+            <path d="M16,52 Q30,46 40,52 Q50,58 60,52 Q70,46 86,52" fill="none" stroke="#7c3aed" stroke-width="3" transform="rotate(15 50 50)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="colors">
+      <span style="font-size:10px;color:#999">色:</span>
+      <span class="color-dot" style="background:#7c3aed"></span>
+      <span class="color-dot" style="background:#a78bfa"></span>
+      <span class="color-dot" style="background:#06d6a0"></span>
+    </div>
+
+    <div class="app-row">
+      <svg width="20" height="20" viewBox="0 0 100 100"><defs><linearGradient id="g2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient><clipPath id="gc2"><rect x="22" y="22" width="56" height="56" rx="8" transform="rotate(15 50 50)"/></clipPath></defs><rect x="22" y="22" width="56" height="56" rx="8" fill="none" stroke="#6b7280" stroke-width="2" transform="rotate(15 50 50)"/><rect x="21" y="45" width="58" height="34" rx="7" fill="url(#g2)" opacity="0.65" transform="rotate(15 50 50)" clip-path="url(#gc2)"/><path d="M20,48 Q30,43 40,48 Q50,53 60,48 Q70,43 82,48" fill="none" stroke="#7c3aed" stroke-width="2" transform="rotate(15 50 50)"/></svg>
+      <span class="app-label">Gauge</span>
+    </div>
+  </div>
+
+  <!-- ========== 方案三: ORBIT ========== -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-num">三</span>
+      <div>
+        <div class="card-name">Orbit</div>
+        <div class="card-tag">日历与圈层</div>
+      </div>
+    </div>
+    <div class="card-desc">不完整圆环 + 穿梭圆点<br>行星轨道 · 周期进度感</div>
+
+    <div class="sizes">
+      <!-- 256px -->
+      <div class="size-row">
+        <span class="size-label">256</span>
+        <div class="size-canvas" style="width:120px;height:120px">
+          <svg width="90" height="90" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="orbitGrad1">
+                <stop offset="0%" class="orbit-gray"/>
+                <stop offset="70%" class="orbit-bright"/>
+              </linearGradient>
+            </defs>
+            <!-- 同心圆虚线 -->
+            <circle cx="50" cy="48" r="36" fill="none" stroke="#e5e7eb" stroke-width="0.5" stroke-dasharray="1 4"/>
+            <circle cx="50" cy="48" r="28" fill="none" stroke="#e5e7eb" stroke-width="0.4" stroke-dasharray="1 5"/>
+            <!-- 主圆环 (缺口) -->
+            <path d="M18,48 A32,32 0 1,1 82,48" fill="none" stroke="url(#orbitGrad1)" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- 缺口处终止线 -->
+            <circle cx="82" cy="48" r="3" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            <!-- 穿梭圆点 -->
+            <circle cx="44" cy="16" r="6" fill="#f59e0b"/>
+            <circle cx="44" cy="16" r="10" fill="#f59e0b" opacity="0.15"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 48px -->
+      <div class="size-row">
+        <span class="size-label">48</span>
+        <div class="size-canvas" style="width:48px;height:48px">
+          <svg width="36" height="36" viewBox="0 0 100 100">
+            <path d="M16,48 A34,34 0 1,1 84,48" fill="none" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>
+            <path d="M16,48 A34,34 0 0,1 60,16" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="84" cy="48" r="3" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="45" cy="15" r="7" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 16px -->
+      <div class="size-row">
+        <span class="size-label">16</span>
+        <div class="size-canvas" style="width:24px;height:24px">
+          <svg width="16" height="16" viewBox="0 0 100 100">
+            <path d="M14,48 A36,36 0 1,1 86,48" fill="none" stroke="#d1d5db" stroke-width="4" stroke-linecap="round"/>
+            <path d="M14,48 A36,36 0 0,1 62,14" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="86" cy="48" r="4" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+            <circle cx="47" cy="14" r="8" fill="#f59e0b"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="colors">
+      <span style="font-size:10px;color:#999">色:</span>
+      <span class="color-dot" style="background:#d1d5db"></span>
+      <span class="color-dot" style="background:#f59e0b"></span>
+      <span class="color-dot" style="background:#e5e7eb"></span>
+    </div>
+
+    <div class="app-row">
+      <svg width="20" height="20" viewBox="0 0 100 100"><path d="M14,48 A36,36 0 1,1 86,48" fill="none" stroke="#d1d5db" stroke-width="4" stroke-linecap="round"/><path d="M14,48 A36,36 0 0,1 62,14" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/><circle cx="86" cy="48" r="4" fill="none" stroke="#f59e0b" stroke-width="2.5"/><circle cx="47" cy="14" r="8" fill="#f59e0b"/></svg>
+      <span class="app-label">Orbit</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== Windows 11 任务栏模拟 ====== -->
+<div class="taskbar-sim">
+  <span class="taskbar-label">Win 11 任务栏 16px 效果</span>
+  <div class="taskbar-icons">
+
+    <!-- Flux 16 -->
+    <div class="taskbar-slot" style="width:28px;height:28px">
+      <svg width="16" height="16" viewBox="0 0 100 100">
+        <line x1="15" y1="78" x2="60" y2="78" stroke="#06d6a0" stroke-width="4" stroke-dasharray="3 8" opacity="0.5"/>
+        <line x1="15" y1="55" x2="68" y2="55" stroke="#2979ff" stroke-width="5" stroke-dasharray="6 6"/>
+        <line x1="15" y1="35" x2="70" y2="35" stroke="#2979ff" stroke-width="6" stroke-dasharray="10 5"/>
+        <polygon points="70,35 54,25 54,45" fill="#2979ff"/>
+        <circle cx="78" cy="28" r="6" fill="#f59e0b"/>
+      </svg>
+    </div>
+
+    <!-- Gauge 16 -->
+    <div class="taskbar-slot" style="width:28px;height:28px">
+      <svg width="16" height="16" viewBox="0 0 100 100">
+        <defs><linearGradient id="g3"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient><clipPath id="gc3"><rect x="18" y="18" width="64" height="64" rx="10" transform="rotate(15 50 50)"/></clipPath></defs>
+        <rect x="18" y="18" width="64" height="64" rx="10" fill="none" stroke="#6b7280" stroke-width="3" transform="rotate(15 50 50)"/>
+        <rect x="17" y="48" width="66" height="35" rx="8" fill="url(#g3)" opacity="0.7" transform="rotate(15 50 50)" clip-path="url(#gc3)"/>
+        <path d="M16,52 Q30,46 40,52 Q50,58 60,52 Q70,46 86,52" fill="none" stroke="#7c3aed" stroke-width="3" transform="rotate(15 50 50)"/>
+      </svg>
+    </div>
+
+    <!-- Orbit 16 -->
+    <div class="taskbar-slot" style="width:28px;height:28px">
+      <svg width="16" height="16" viewBox="0 0 100 100">
+        <path d="M14,48 A36,36 0 1,1 86,48" fill="none" stroke="#d1d5db" stroke-width="4" stroke-linecap="round"/>
+        <path d="M14,48 A36,36 0 0,1 62,14" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="86" cy="48" r="4" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+        <circle cx="47" cy="14" r="8" fill="#f59e0b"/>
+      </svg>
+    </div>
+
+  </div>
+  <span style="color:#666;font-size:11px;margin-left:12px;">Flux 　　　 Gauge 　　　 Orbit</span>
+</div>
+
+</body>
+</html>

@@ -25,7 +25,7 @@ export default function App() {
       {/* 标题栏 */}
       <div className="titlebar">
         <div className="titlebar-left">
-          <span className="app-name">流量统计</span>
+          <span className="app-name">Flux</span>
           <div className="tabs">
             <button
               className={"tab-btn" + (activeTab === "overview" ? " active" : "")}

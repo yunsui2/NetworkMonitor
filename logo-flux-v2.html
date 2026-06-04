@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flux 图标 — 修订版对比</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f0f1f5;
+  --card: #fff;
+  --text: #1a1a2e;
+  --text2: #5a6073;
+  --text3: #999;
+  --border: #e5e7eb;
+  --accent: #4a8eff;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  font-family: var(--font); background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  padding: 30px 20px; -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.subtitle { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
+
+/* Comparison layout */
+.compare-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  max-width: 860px; width: 100%; margin-bottom: 28px;
+}
+.section-title {
+  grid-column: 1 / -1;
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--border);
+  margin-bottom: 4px;
+}
+.section-title .badge {
+  font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600;
+}
+.badge.old { background: #fee2e2; color: #dc2626; }
+.badge.new { background: #dcfce7; color: #16a34a; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.card h3 { font-size: 14px; margin-bottom: 4px; }
+.card .ver { font-size: 11px; color: var(--text3); margin-bottom: 18px; }
+
+.size-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.size-label { font-size: 10px; color: #999; width: 36px; text-align: right; }
+.size-canvas {
+  border: 1px dashed #e5e7eb; border-radius: 6px;
+  background: #fafbfc; display: flex; align-items: center; justify-content: center;
+}
+
+/* === 改动说明列表 === */
+.changes {
+  max-width: 860px; width: 100%; margin-bottom: 28px;
+}
+.changes h2 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+.change-item {
+  display: flex; gap: 14px; padding: 12px 16px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; margin-bottom: 8px;
+}
+.change-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.change-body h4 { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.change-body p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* === 最终效果 === */
+.final-row {
+  max-width: 860px; width: 100%;
+  display: flex; gap: 24px; margin-bottom: 10px;
+}
+.final-card {
+  flex: 1; background: var(--card); border: 2px solid var(--accent);
+  border-radius: 14px; padding: 28px 20px;
+  text-align: center; box-shadow: 0 4px 20px rgba(74,142,255,0.1);
+}
+.final-card h3 { font-size: 15px; margin-bottom: 16px; }
+
+/* Taskbar */
+.taskbar-sim {
+  background: #1e2233; border-radius: 12px 12px 0 0;
+  padding: 10px 24px; display: flex; align-items: center; gap: 16px;
+  margin-top: 20px; max-width: 860px; width: 100%;
+}
+.taskbar-label { color: #888; font-size: 11px; }
+.taskbar-slot {
+  background: rgba(255,255,255,0.06); border-radius: 6px;
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+}
+</style>
+</head>
+<body>
+
+<h1>Flux 图标 · 修订版</h1>
+<p class="subtitle">方案一深化 — 修正虚线可见性 + 增加流动粒子细节</p>
+
+<!-- ====== 对比: 256px ====== -->
+<div class="compare-row">
+  <div class="section-title">
+    尺寸 256px 对比
+    <span class="badge old">V1 原版</span>
+    <span style="font-size:14px;color:var(--text3)">→</span>
+    <span class="badge new">V2 修订</span>
+  </div>
+
+  <!-- V1 256 -->
+  <div class="card">
+    <h3>V1 · 原版</h3>
+    <div class="ver">虚线太稀疏，256px 下几乎看不到</div>
+    <div class="size-canvas" style="width:200px;height:200px;margin:0 auto">
+      <svg width="160" height="160" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="fOld" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+          </linearGradient>
+        </defs>
+        <line x1="20" y1="75" x2="65" y2="75" stroke="url(#fOld)" stroke-width="2.5" stroke-dasharray="2 6" opacity="0.5"/>
+        <line x1="20" y1="58" x2="70" y2="58" stroke="url(#fOld)" stroke-width="3.5" stroke-dasharray="4 5" opacity="0.75"/>
+        <line x1="20" y1="41" x2="72" y2="41" stroke="url(#fOld)" stroke-width="4.5" stroke-dasharray="8 4"/>
+        <polygon points="72,41 58,33 58,49" fill="#1d4ed8"/>
+        <circle cx="78" cy="36" r="4" fill="#f59e0b"/>
+      </svg>
+    </div>
+    <p style="font-size:11px;color:#dc2626;text-align:center;margin-top:8px;">✗ 虚线间距太大（dasharray="2 6"），256px下形同实线</p>
+  </div>
+
+  <!-- V2 256 -->
+  <div class="card">
+    <h3>V2 · 修订版</h3>
+    <div class="ver">加粗 + 加密虚线 + 流动粒子 + 微光晕</div>
+    <div class="size-canvas" style="width:200px;height:200px;margin:0 auto">
+      <svg width="160" height="160" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="fNew" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#1e40af"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+          </linearGradient>
+          <radialGradient id="glow">
+            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- 光晕 -->
+        <circle cx="68" cy="34" r="30" fill="url(#glow)"/>
+        <!-- 三条虚线: 深色不透明 -->
+        <line x1="18" y1="78" x2="64" y2="78" stroke="#1e40af" stroke-width="4.5" stroke-dasharray="5 4.5" stroke-linecap="round" opacity="0.55"/>
+        <line x1="18" y1="56" x2="70" y2="56" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 4.5" stroke-linecap="round" opacity="0.82"/>
+        <line x1="18" y1="36" x2="74" y2="36" stroke="#3b82f6" stroke-width="7" stroke-dasharray="11 4.5" stroke-linecap="round"/>
+        <!-- 流动粒子 -->
+        <circle cx="40" cy="36" r="3" fill="#1e40af" opacity="0.9">
+          <animate attributeName="cx" values="18;74" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.9;0" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="34" cy="56" r="2.5" fill="#2563eb" opacity="0.8">
+          <animate attributeName="cx" values="18;70" dur="3.2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.8;0" dur="3.2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- 箭头 -->
+        <polygon points="74,36 56,23 56,49" fill="#2563eb"/>
+        <!-- 橙点 + 脉冲 -->
+        <circle cx="83" cy="28" r="5.5" fill="#f59e0b">
+          <animate attributeName="r" values="5.5;7.5;5.5" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+    <p style="font-size:11px;color:#16a34a;text-align:center;margin-top:8px;">✓ dasharray="5 4" 起，虚线段清晰。粒子沿虚线流动。橙点脉冲呼吸。</p>
+  </div>
+</div>
+
+<!-- ====== 对比: 48px & 16px ====== -->
+<div class="compare-row">
+  <div class="section-title">
+    小尺寸对比 (48px / 16px)
+  </div>
+
+  <!-- V1 48+16 -->
+  <div class="card">
+    <h3>V1 原版</h3>
+    <div class="ver">小尺寸下虚线几乎消失</div>
+    <div class="size-row">
+      <span class="size-label">48</span>
+      <div class="size-canvas" style="width:52px;height:52px">
+        <svg width="38" height="38" viewBox="0 0 100 100">
+          <line x1="20" y1="75" x2="65" y2="75" stroke="#06d6a0" stroke-width="3" stroke-dasharray="2 6" opacity="0.5"/>
+          <line x1="20" y1="55" x2="70" y2="55" stroke="#2979ff" stroke-width="4" stroke-dasharray="5 5" opacity="0.8"/>
+          <line x1="20" y1="38" x2="72" y2="38" stroke="#2979ff" stroke-width="5" stroke-dasharray="8 4"/>
+          <polygon points="72,38 56,29 56,47" fill="#2979ff"/>
+          <circle cx="79" cy="33" r="5" fill="#f59e0b"/>
+        </svg>
+      </div>
+    </div>
+    <div class="size-row">
+      <span class="size-label">16</span>
+      <div class="size-canvas" style="width:28px;height:28px">
+        <svg width="16" height="16" viewBox="0 0 100 100">
+          <line x1="15" y1="78" x2="60" y2="78" stroke="#06d6a0" stroke-width="4" stroke-dasharray="3 8" opacity="0.5"/>
+          <line x1="15" y1="55" x2="68" y2="55" stroke="#2979ff" stroke-width="5" stroke-dasharray="6 6"/>
+          <line x1="15" y1="35" x2="70" y2="35" stroke="#2979ff" stroke-width="6" stroke-dasharray="10 5"/>
+          <polygon points="70,35 54,25 54,45" fill="#2979ff"/>
+          <circle cx="78" cy="28" r="6" fill="#f59e0b"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2 48+16 -->
+  <div class="card">
+    <h3>V2 修订版</h3>
+    <div class="ver">加粗笔画 + 保留虚线特征</div>
+    <div class="size-row">
+      <span class="size-label">48</span>
+      <div class="size-canvas" style="width:52px;height:52px">
+        <svg width="38" height="38" viewBox="0 0 100 100">
+          <defs><linearGradient id="f48"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs>
+          <line x1="16" y1="78" x2="66" y2="78" stroke="#1e40af" stroke-width="5" stroke-dasharray="3.5 3" stroke-linecap="round" opacity="0.6"/>
+          <line x1="16" y1="56" x2="72" y2="56" stroke="#2563eb" stroke-width="6" stroke-dasharray="5 3" stroke-linecap="round" opacity="0.85"/>
+          <line x1="16" y1="36" x2="74" y2="36" stroke="#3b82f6" stroke-width="7" stroke-dasharray="7 3.5" stroke-linecap="round"/>
+          <polygon points="74,36 56,24 56,48" fill="#2563eb"/>
+          <circle cx="83" cy="27" r="6" fill="#f59e0b">
+            <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+    </div>
+    <div class="size-row">
+      <span class="size-label">16</span>
+      <div class="size-canvas" style="width:28px;height:28px">
+        <svg width="16" height="16" viewBox="0 0 100 100">
+          <defs><linearGradient id="f16"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs>
+          <line x1="14" y1="78" x2="66" y2="78" stroke="#1e40af" stroke-width="6" stroke-dasharray="3 2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="14" y1="55" x2="72" y2="55" stroke="#2563eb" stroke-width="7" stroke-dasharray="4.5 2.5" stroke-linecap="round" opacity="0.85"/>
+          <line x1="14" y1="35" x2="74" y2="35" stroke="#3b82f6" stroke-width="8" stroke-dasharray="6 3" stroke-linecap="round"/>
+          <polygon points="74,35 54,23 54,47" fill="#2563eb"/>
+          <circle cx="84" cy="26" r="7" fill="#f59e0b"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 改动说明 ====== -->
+<div class="changes">
+  <h2>改动说明</h2>
+
+  <div class="change-item">
+    <div class="change-num">1</div>
+    <div class="change-body">
+      <h4>加密虚线间距</h4>
+      <p>V1 使用 <code>dasharray="2 6" / "4 5" / "8 4"</code>，线段短、间隔大，256px 下看不出来。V2 改为 <code>"5 4" / "7 4" / "10 4"</code>，线段拉长、间隔缩小，使虚线在各个尺寸都清晰可辨。同时加入 <code>stroke-linecap="round"</code> 让虚线段两端圆润。</p>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <div class="change-num">2</div>
+    <div class="change-body">
+      <h4>增加流动粒子</h4>
+      <p>在第二条和第三条虚线上各增加一个白色小圆点，沿虚线方向循环移动（SVG <code>&lt;animate&gt;</code>），模拟数据在管道中流动的效果。256px 下清晰可见，小尺寸下自然隐去。</p>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <div class="change-num">3</div>
+    <div class="change-body">
+      <h4>箭头尖端光晕</h4>
+      <p>在箭头区域增加一个柔和的径向渐变光晕（<code>radialGradient</code>），从浅蓝到透明，强化"上传/发送"的视觉暗示。仅在大尺寸（≥128px）下显示。</p>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <div class="change-num">4</div>
+    <div class="change-body">
+      <h4>橙色圆点脉冲动画</h4>
+      <p>箭头尖端的橙色警示点增加呼吸脉冲效果（<code>r</code> 属性动画循环），暗示"实时监控中"的动态状态。</p>
+    </div>
+  </div>
+
+  <div class="change-item">
+    <div class="change-num">5</div>
+    <div class="change-body">
+      <h4>三线视觉层次强化</h4>
+      <p>三条虚线从下到上：渐粗 + 渐密 + 渐亮，形成清晰的"数据加速上行"视觉节奏。V1 已有此意图，V2 通过调整透明度差值和线宽差值进一步强化。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 最终效果 ====== -->
+<div class="final-row">
+  <div class="final-card">
+    <h3>最终效果 · 应用图标</h3>
+    <svg width="120" height="120" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="ff1" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#1e40af"/>
+          <stop offset="100%" stop-color="#3b82f6"/>
+        </linearGradient>
+        <radialGradient id="ffGlow">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="64" cy="34" r="32" fill="url(#ffGlow)"/>
+      <line x1="18" y1="78" x2="64" y2="78" stroke="#1e40af" stroke-width="4.5" stroke-dasharray="5 4.5" stroke-linecap="round" opacity="0.55"/>
+      <line x1="18" y1="56" x2="70" y2="56" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 4.5" stroke-linecap="round" opacity="0.82"/>
+      <line x1="18" y1="36" x2="74" y2="36" stroke="#3b82f6" stroke-width="7" stroke-dasharray="11 4.5" stroke-linecap="round"/>
+      <circle cx="40" cy="36" r="3" fill="#1e40af" opacity="0.9">
+        <animate attributeName="cx" values="18;74" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.9;0" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="34" cy="56" r="2.5" fill="#2563eb" opacity="0.8">
+        <animate attributeName="cx" values="18;70" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.8;0" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
+      <polygon points="74,36 56,23 56,49" fill="#2563eb"/>
+      <circle cx="83" cy="28" r="5.5" fill="#f59e0b">
+        <animate attributeName="r" values="5.5;7.5;5.5" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <p style="font-size:11px;color:var(--text2);margin-top:6px;">光晕 + 粒子 + 脉冲 · 256px</p>
+  </div>
+  <div class="final-card">
+    <h3>任务栏效果</h3>
+    <div style="display:flex;gap:12px;justify-content:center">
+      <div style="background:#1e2233;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 100 100">
+          <defs><linearGradient id="ft1"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs>
+          <line x1="14" y1="78" x2="66" y2="78" stroke="#1e40af" stroke-width="6" stroke-dasharray="3 2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="14" y1="55" x2="72" y2="55" stroke="#2563eb" stroke-width="7" stroke-dasharray="4.5 2.5" stroke-linecap="round" opacity="0.85"/>
+          <line x1="14" y1="35" x2="74" y2="35" stroke="#3b82f6" stroke-width="8" stroke-dasharray="6 3" stroke-linecap="round"/>
+          <polygon points="74,35 54,23 54,47" fill="#2563eb"/>
+          <circle cx="84" cy="26" r="7" fill="#f59e0b"/>
+        </svg>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--text2);margin-top:6px;">16px · 深色任务栏</p>
+  </div>
+</div>
+
+<div class="taskbar-sim">
+  <span class="taskbar-label">Win 11 任务栏预览</span>
+  <div class="taskbar-slot">
+    <svg width="16" height="16" viewBox="0 0 100 100">
+      <defs><linearGradient id="ftsk"><stop offset="0%" stop-color="#1e40af"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs>
+      <line x1="14" y1="78" x2="66" y2="78" stroke="#1e40af" stroke-width="6" stroke-dasharray="3 2.5" stroke-linecap="round" opacity="0.6"/>
+      <line x1="14" y1="55" x2="72" y2="55" stroke="#2563eb" stroke-width="7" stroke-dasharray="4.5 2.5" stroke-linecap="round" opacity="0.85"/>
+      <line x1="14" y1="35" x2="74" y2="35" stroke="#3b82f6" stroke-width="8" stroke-dasharray="6 3" stroke-linecap="round"/>
+      <polygon points="74,35 54,23 54,47" fill="#2563eb"/>
+      <circle cx="84" cy="26" r="7" fill="#f59e0b"/>
+    </svg>
+  </div>
+  <span style="color:#999;font-size:11px;">Flux — 三虚线+箭头清晰可见</span>
+</div>
+
+</body>
+</html>
