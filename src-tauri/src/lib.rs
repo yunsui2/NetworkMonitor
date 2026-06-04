@@ -6,7 +6,12 @@ use collector::AppState;
 use parking_lot::Mutex;
 use std::fs;
 use std::sync::Arc;
-use tauri::Manager;
+use tauri::{
+    image::Image,
+    menu::{MenuBuilder, MenuItemBuilder},
+    tray::TrayIconBuilder,
+    Manager,
+};
 
 /// 窗口宽高比
 const ASPECT_RATIO: f64 = 283.0 / 188.0;
@@ -35,19 +40,65 @@ pub fn run() {
 
             app.manage(app_state.clone());
 
-            // ---- 等比缩放 ----
+            // ---- 窗口设置 ----
             if let Some(window) = app.get_webview_window("main") {
+                // 等比缩放
                 let w = window.clone();
                 window.on_window_event(move |event| {
                     if let tauri::WindowEvent::Resized(size) = event {
-                        // 用宽度反算正确高度
                         let new_h = (size.width as f64 / ASPECT_RATIO).round() as u32;
                         if (size.height as f64 - new_h as f64).abs() > 1.0 {
                             let _ = w.set_size(tauri::PhysicalSize::new(size.width, new_h));
                         }
                     }
                 });
+
+                // 关闭 → 最小化到托盘
+                let win = window.clone();
+                window.on_window_event(move |event| {
+                    if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+                        api.prevent_close();
+                        let _ = win.hide();
+                    }
+                });
             }
+
+            // ---- 系统托盘 ----
+            let icon_img = Image::from_bytes(include_bytes!("../icons/32x32.png"))?;
+
+            let show_item = MenuItemBuilder::with_id("show", "显示").build(app)?;
+            let quit_item = MenuItemBuilder::with_id("quit", "退出").build(app)?;
+            let tray_menu = MenuBuilder::new(app)
+                .item(&show_item)
+                .item(&quit_item)
+                .build()?;
+
+            let _tray = TrayIconBuilder::new()
+                .icon(icon_img)
+                .menu(&tray_menu)
+                .tooltip("Flux")
+                .on_menu_event(move |app_handle, event| match event.id().as_ref() {
+                    "show" => {
+                        if let Some(w) = app_handle.get_webview_window("main") {
+                            let _ = w.show();
+                            let _ = w.set_focus();
+                        }
+                    }
+                    "quit" => {
+                        app_handle.exit(0);
+                    }
+                    _ => {}
+                })
+                .on_tray_icon_event(|tray_icon, event| {
+                    if let tauri::tray::TrayIconEvent::DoubleClick { .. } = event {
+                        // 托盘图标也支持双击打开
+                        if let Some(w) = tray_icon.app_handle().get_webview_window("main") {
+                            let _ = w.show();
+                            let _ = w.set_focus();
+                        }
+                    }
+                })
+                .build(app)?;
 
             Ok(())
         })
